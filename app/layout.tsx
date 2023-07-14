@@ -1,7 +1,8 @@
-import { Sidebar } from "@/components/layouts/Sidebar";
+import { Sidebar } from "@/components/Sidebar/Main";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { FollowBar } from "@/components/FollowBar";
 
 export const metadata: Metadata = {
   title: "Twitter Clone",
@@ -23,6 +24,7 @@ export default function RootLayout({
               <div className="col-span-3 lg:col-span-2 border-x-[1px] border-neutral-800">
                 {children}
               </div>
+              <FollowBar />
             </div>
           </div>
         </div>
