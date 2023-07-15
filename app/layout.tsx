@@ -1,13 +1,22 @@
 import { Sidebar } from "@/components/Sidebar/Main";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Barlow } from "next/font/google";
 import { FollowBar } from "@/components/FollowBar";
+import { Modal } from "@/components/Modal";
 
 export const metadata: Metadata = {
 	title: "Twitter Clone",
 	description: "A Twitter clone built with Next.js and Prisma.",
 };
+
+const barlow = Barlow({
+	weight: ["400", "500", "600", "700"],
+	style: "normal",
+	subsets: ["latin"],
+	display: "swap",
+	variable: "--font-barlow",
+});
 
 export default function RootLayout({
 	children,
@@ -15,20 +24,8 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en">
-			<body>
-				<div className="h-screen bg-black">
-					<div className="container h-full mx-auto xl:px-30 max-w-6xl">
-						<div className="grid grid-cols-4 h-full">
-							<Sidebar />
-							<div className="col-span-3 lg:col-span-2 border-x-[1px] border-neutral-800">
-								{children}
-							</div>
-							<FollowBar />
-						</div>
-					</div>
-				</div>
-			</body>
+		<html lang="en" className={barlow.className}>
+			<body>{children}</body>
 		</html>
 	);
 }
