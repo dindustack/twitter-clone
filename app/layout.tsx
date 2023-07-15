@@ -1,9 +1,6 @@
-import { Sidebar } from "@/components/Sidebar/Main";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Barlow } from "next/font/google";
-import { FollowBar } from "@/components/FollowBar";
-import { Modal } from "@/components/Modal";
 
 export const metadata: Metadata = {
 	title: "Twitter Clone",
@@ -11,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const barlow = Barlow({
-	weight: ["400", "500", "600", "700"],
+	weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 	style: "normal",
 	subsets: ["latin"],
 	display: "swap",
@@ -24,7 +21,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={barlow.className}>
+		<html lang="en" className={`${barlow.variable}`}>
 			<body>{children}</body>
 		</html>
 	);
