@@ -1,11 +1,12 @@
 import React, { useCallback } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { Button } from "./Button";
+import { BsTwitter } from "react-icons/bs";
 
 interface ModalProps {
 	isOpen?: boolean;
-	onClose: () => void | undefined;
-	onSubmit: () => void | undefined;
+	onClose: () => void;
+	onSubmit: () => void;
 	title: string;
 	body?: React.ReactElement;
 	footer?: React.ReactElement;
@@ -17,6 +18,7 @@ export const Modal: React.FC<ModalProps> = ({
 	actionLabel,
 	body,
 	disabled,
+	footer,
 	isOpen,
 	onClose,
 	onSubmit,
@@ -88,6 +90,10 @@ export const Modal: React.FC<ModalProps> = ({
           focus:outline-none
           "
 				>
+					{/* Logo */}
+					<div className="flex items-center justify-center py-8">
+						<BsTwitter size={28} color="white" />
+					</div>
 					{/* Header */}
 					<div
 						className="
@@ -127,6 +133,7 @@ export const Modal: React.FC<ModalProps> = ({
 							large
 							onClick={handleSubmit}
 						/>
+						{footer}
 					</div>
 				</div>
 			</div>

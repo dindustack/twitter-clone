@@ -1,4 +1,5 @@
 interface FormInputProps {
+	autoComplete?: string;
 	disabled?: boolean;
 	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	placeholder: string;
@@ -7,6 +8,7 @@ interface FormInputProps {
 }
 
 export const FormInput: React.FC<FormInputProps> = ({
+	autoComplete,
 	disabled,
 	onChange,
 	placeholder,
@@ -17,6 +19,7 @@ export const FormInput: React.FC<FormInputProps> = ({
 		<input
 			disabled={disabled}
 			onChange={onChange}
+			autoComplete={autoComplete}
 			value={value}
 			placeholder={placeholder}
 			type={type}
@@ -33,7 +36,8 @@ export const FormInput: React.FC<FormInputProps> = ({
       focus:border-sky-500
       focus:border-2
       transition
-      disabled:bg-neutral-900disabled:opacity-70
+      disabled:bg-neutral-900
+      disabled:opacity-70
       disabled:cursor-not-allowed
       "
 		/>
