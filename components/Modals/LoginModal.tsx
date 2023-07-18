@@ -23,7 +23,6 @@ export const LoginModal = () => {
 	}, [loginModal]);
 
 	// onSubmit useCallback and submit the form
-
 	const bodyContent = (
 		<form onSubmit={onSubmit}>
 			<div className="flex flex-col gap-4">
