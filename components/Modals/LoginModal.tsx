@@ -1,24 +1,14 @@
 "use client";
 import useLoginModal from "@/hooks/useLoginModal";
-import { useForm } from "react-hook-form";
 import { FormInput } from "../Form/Input";
 import { useCallback, useState } from "react";
 import { Modal } from "../Modal";
 
-type FormValues = {
-	email: string;
-	password: string;
-};
-
 export const LoginModal = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const loginModal = useLoginModal();
-	const { handleSubmit, register } = useForm<FormValues>({
-		defaultValues: {
-			email: "",
-			password: "",
-		},
-	});
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
 	const onSubmit = useCallback(async () => {
 		try {
@@ -39,17 +29,18 @@ export const LoginModal = () => {
 			<div className="flex flex-col gap-4">
 				<FormInput
 					type="email"
-					// value={""}
+					value={email}
 					placeholder="Email"
 					disabled={isLoading}
-					{...register("email")}
+					onChange={(e) => setEmail(e.target.value)}
 				/>
 				<FormInput
 					type="password"
-					// value={""}
+					value={password}
 					placeholder="Password"
 					disabled={isLoading}
-					{...register("password")}
+					autoComplete="current-password"
+					onChange={(e) => setPassword(e.target.value)}
 				/>
 			</div>
 		</form>
