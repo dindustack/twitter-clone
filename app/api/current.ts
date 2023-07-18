@@ -1,20 +1,24 @@
-import serverAuth from "@/libs/serverAuth";
-import { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/libs/auth";
+import { NextResponse } from "next/server";
 
-export default async function handler(
-	req: NextApiRequest,
-	res: NextApiResponse
-) {
-	if (req.method !== "GET") {
-		return res.status(405).end();
+import prisma from "@/libs/prismadb";
+
+export async function GET(request: Request, res: Response) {
+	const session = await getServerSession(authOptions);
+
+	if (!session) {
+		return new NextResponse(
+			JSON.stringify({ status: "fail", message: "You are not logged in" }),
+			{ status: 401 }
+		);
 	}
 
-	try {
-		const { currentUser } = await serverAuth(req, res);
+	const currentUser = await prisma.user.findUnique({
+		where: {
+			email: session.user?.email!,
+		},
+	});
 
-		return res.status(200).json(currentUser);
-	} catch (error) {
-		console.error(error);
-		return res.status(400).end();
-	}
+	return NextResponse.json(currentUser);
 }
