@@ -4,18 +4,21 @@ import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 
 interface AvatarProps {
-  userId: string;
+  profileImage?: string;
+  userId?: string;
   isLarge?: boolean;
   hasBorder?: boolean;
+  onProfilePage?: boolean;
 }
 
 export const Avatar: React.FC<AvatarProps> = ({
   userId,
   isLarge,
   hasBorder,
+  onProfilePage,
+  profileImage,
 }) => {
   const router = useRouter();
-  const { data: fetchedUser } = useIndividualUser(userId);
 
   const onClick = useCallback(
     (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
@@ -33,10 +36,9 @@ export const Avatar: React.FC<AvatarProps> = ({
 		${hasBorder ? "border-4 border-black" : ""}
 ${isLarge ? "h-32" : "h-12"}
 ${isLarge ? "w-32" : "w-12"}
+${!onProfilePage && "hover:opacity-90 cursor-pointer"}
 rounded-full
-hover:opacity-90
 transition
-cursor-pointer
 relative
 		`}
     >
@@ -48,7 +50,10 @@ relative
         }}
         alt="Avatar"
         onClick={onClick}
-        src={fetchedUser?.profileImage || "/images/placeholder.png"}
+        src={profileImage || "/images/placeholder.png"}
+        className={`
+        ${hasBorder ? "border-4 border-black" : ""}
+        `}
       />
     </div>
   );

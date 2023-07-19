@@ -4,7 +4,6 @@ import { Header } from "@/components/Header";
 import { UserBio } from "@/components/User/Bio";
 import { UserHero } from "@/components/User/Hero";
 import { useIndividualUser } from "@/hooks/useIndividualUser";
-import React from "react";
 
 export default function UserView({ params }: { params: { userId: string } }) {
   const userId = params.userId;
@@ -16,7 +15,7 @@ export default function UserView({ params }: { params: { userId: string } }) {
   return (
     <>
       <Header showBackArrow label={fetchedUser?.name} />
-      <UserHero userId={userId} />
+      <UserHero fetchedUser={fetchedUser} />
       <UserBio userId={userId} />
     </>
   );

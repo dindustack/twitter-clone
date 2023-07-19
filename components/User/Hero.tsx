@@ -1,13 +1,13 @@
-import { useIndividualUser } from "@/hooks/useIndividualUser";
 import Image from "next/image";
 import { Avatar } from "../Avatar";
 
 interface UserHeroProps {
-  userId: string;
+  fetchedUser: any;
 }
 
-export const UserHero: React.FC<UserHeroProps> = ({ userId }) => {
-  const { data: fetchedUser } = useIndividualUser(userId);
+export const UserHero: React.FC<UserHeroProps> = ({
+  fetchedUser,
+}: UserHeroProps) => {
   return (
     <>
       <div className="bg-neutral-700 h-44 relative">
@@ -20,7 +20,7 @@ export const UserHero: React.FC<UserHeroProps> = ({ userId }) => {
           />
         )}
         <div className="absolute -bottom-16 left-4">
-          <Avatar userId={userId} isLarge hasBorder />
+          <Avatar isLarge hasBorder />
         </div>
       </div>
     </>
