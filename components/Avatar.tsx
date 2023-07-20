@@ -49,6 +49,7 @@ relative
           borderRadius: "100%",
         }}
         alt="Avatar"
+        sizes="100%"
         onClick={onClick}
         src={profileImage || "/images/placeholder.png"}
         className={`

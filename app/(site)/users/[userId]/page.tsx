@@ -6,6 +6,7 @@ import { UserHero } from "@/components/User/Hero";
 import { useIndividualUser } from "@/hooks/useIndividualUser";
 
 export default function UserView({ params }: { params: { userId: string } }) {
+  console.log(params);
   const userId = params.userId;
   const { data: fetchedUser, isLoading } = useIndividualUser(userId);
 
