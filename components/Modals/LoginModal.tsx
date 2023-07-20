@@ -79,7 +79,7 @@ export const LoginModal = () => {
 			disabled={isLoading}
 			isOpen={loginModal.isOpen}
 			title="Login"
-			actionLabel="Sign in"
+			actionLabel={isLoading ? "Submitting" : "Sign in"}
 			onClose={loginModal.onClose}
 			onSubmit={onSubmit}
 			body={bodyContent}

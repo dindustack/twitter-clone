@@ -19,6 +19,7 @@
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
+    "date-fns": "^2.30.0",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.10",
     "next": "13.4.10",
@@ -36,5 +37,8 @@
     "typescript": "5.1.6",
     "zustand": "^4.3.9"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "peerDependencies": {
+    "csstype": "^3.0.10"
+  }
 }
