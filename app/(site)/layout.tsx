@@ -6,6 +6,7 @@ import { RegisterModal } from "@/components/Modals/RegisterModal";
 import { LoginModal } from "@/components/Modals/LoginModal";
 import { NextAuthProvider } from "./providers";
 import Layout from "@/components/Layout";
+import { EditModal } from "@/components/Modals/EditModal";
 
 export const metadata: Metadata = {
   title: "Twitter Clone",
@@ -29,6 +30,7 @@ export default function RootLayout({
     <html lang="en" className={`${barlow.variable}`}>
       <body>
         <Toaster />
+        <EditModal />
         <RegisterModal />
         <LoginModal />
         <NextAuthProvider>

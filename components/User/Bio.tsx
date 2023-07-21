@@ -5,6 +5,7 @@ import { useMemo } from "react";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { useIndividualUser } from "@/hooks/useIndividualUser";
 import { Button } from "../Button";
+import useEditModal from "@/hooks/useEditModal";
 
 interface UserBioProps {
   userId: string;
@@ -13,6 +14,7 @@ interface UserBioProps {
 export const UserBio: React.FC<UserBioProps> = ({ userId }) => {
   const { data: currentUser } = useCurrentUser();
   const { data: fetchedUser } = useIndividualUser(userId);
+  const editModal = useEditModal();
 
   const createdAt = useMemo(() => {
     if (!fetchedUser?.createdAt) {
@@ -24,7 +26,7 @@ export const UserBio: React.FC<UserBioProps> = ({ userId }) => {
     <div className="border-b-[1px] border-neutral-800 pb-4">
       <div className="flex justify-end p-2">
         {currentUser?.id === userId ? (
-          <Button secondary label="Edit" onClick={() => {}} />
+          <Button secondary label="Edit" onClick={editModal.onOpen} />
         ) : (
           <Button onClick={() => {}} label="Follow" secondary />
         )}
@@ -32,7 +34,7 @@ export const UserBio: React.FC<UserBioProps> = ({ userId }) => {
       <div className="mt-8 px-4">
         <div className="flex flex-col">
           <p className="text-white text-2xl font-semibold">
-            {fetchedUser.name}
+            {fetchedUser?.name}
           </p>
           <p className="text-md text-neutral-500">{`@${fetchedUser.username}`}</p>
         </div>
