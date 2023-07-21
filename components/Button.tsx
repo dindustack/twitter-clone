@@ -1,6 +1,6 @@
 interface ButtonProps {
   label: string;
-  secondary: boolean;
+  secondary?: boolean;
   fullWidth?: boolean;
   large?: boolean;
   onClick: () => void;
@@ -31,14 +31,9 @@ export const Button: React.FC<ButtonProps> = ({
     border
     ${fullWidth ? "w-full" : "w-fit"}
     ${secondary ? "bg-white" : "bg-sky-500"}
-    ${secondary ? "text-black" : "text-white"}
-    ${secondary ? "border-black" : "border-sky-500"}
-    ${large ? "text-xl" : "text-md"}
-    ${large ? "px-5" : "px-4"}
-    ${large ? "py-3" : "py-2"}
-    ${outline && "bg-transparent"}
-    ${outline && "border-white"}
-    ${outline && "text-white"}
+    ${secondary ? "text-black border-black" : "text-white border-sky-500"}
+    ${large ? "text-xl px-5 py-3" : "text-md px-4 py-2"}
+    ${outline && "bg-transparent border-white text-white"}
     `}
     >
       {label}
