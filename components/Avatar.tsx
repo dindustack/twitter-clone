@@ -1,4 +1,3 @@
-import { useIndividualUser } from "@/hooks/useIndividualUser";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
@@ -34,8 +33,7 @@ export const Avatar: React.FC<AvatarProps> = ({
     <div
       className={`
 		${hasBorder ? "border-4 border-black" : ""}
-${isLarge ? "h-32" : "h-12"}
-${isLarge ? "w-32" : "w-12"}
+${isLarge ? "h-32 w-32" : "h-12 w-12"}
 ${!onProfilePage && "hover:opacity-90 cursor-pointer"}
 rounded-full
 transition
@@ -43,13 +41,13 @@ relative
 		`}
     >
       <Image
-        fill
         style={{
           objectFit: "cover",
           borderRadius: "100%",
         }}
-        alt="Avatar"
+        fill
         sizes="100%"
+        alt="Avatar"
         onClick={onClick}
         src={profileImage || "/images/placeholder.png"}
         className={`

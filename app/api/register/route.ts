@@ -24,14 +24,15 @@ export async function POST(req: Request, res: Response) {
     });
 
     return NextResponse.json(user);
-  } catch (error: any) {
-    console.error(error);
-    return new NextResponse(
-      JSON.stringify({
-        status: "error",
-        message: error.message,
-      }),
-      { status: 500 }
-    );
+  } catch (error) {
+    if (error instanceof Error) {
+      return new NextResponse(
+        JSON.stringify({
+          status: "error",
+          message: error.message,
+        }),
+        { status: 500 }
+      );
+    }
   }
 }
