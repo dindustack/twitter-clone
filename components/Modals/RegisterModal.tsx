@@ -9,111 +9,110 @@ import { signIn } from "next-auth/react";
 import useLoginModal from "@/hooks/useLoginModal";
 
 export const RegisterModal = () => {
-	const [isLoading, setIsLoading] = useState(false);
-	const [email, setEmail] = useState("");
-	const [name, setName] = useState("");
-	const [password, setPassword] = useState("");
-	const [username, setUsername] = useState("");
-	const registerModal = useRegisterModal();
-	const loginModal = useLoginModal();
+  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
 
-	const onToggle = useCallback(() => {
-		if (isLoading) return;
+  const onToggle = useCallback(() => {
+    if (isLoading) return;
 
-		registerModal.onClose();
-		loginModal.onOpen();
-	}, [isLoading, loginModal, registerModal]);
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [isLoading, loginModal, registerModal]);
 
-	const onSubmit = useCallback(async () => {
-		try {
-			setIsLoading(true);
+  const onSubmit = useCallback(async () => {
+    try {
+      setIsLoading(true);
 
-			await axios.post("/api/register", {
-				email,
-				name,
-				password,
-				username,
-			});
+      await axios.post("/api/register", {
+        email,
+        name,
+        password,
+        username,
+      });
 
-			toast.success("Your account is ready!");
+      toast.success("Your account is ready!");
 
-			signIn("credentials", {
-				email,
-				password,
-			});
+      signIn("credentials", {
+        email,
+        password,
+      });
 
-			toast.success("Account Logged in!");
+      toast.success("Account Logged in!");
 
-			registerModal.onClose();
-		} catch (error) {
-			console.error(error);
-			toast.error("Something went wrong");
-		} finally {
-			setIsLoading(false);
-		}
-	}, [email, name, password, registerModal, username]);
+      registerModal.onClose();
+    } catch (error) {
+      toast.error("Something went wrong");
+    } finally {
+      setIsLoading(false);
+    }
+  }, [email, name, password, registerModal, username]);
 
-	const bodyContent = (
-		<div className="flex flex-col gap-4">
-			<FormInput
-				type="email"
-				value={email}
-				onChange={(e) => setEmail(e.target.value)}
-				placeholder="Email"
-				disabled={isLoading}
-			/>
-			<FormInput
-				type="text"
-				value={name}
-				onChange={(e) => setName(e.target.value)}
-				placeholder="Name"
-				disabled={isLoading}
-			/>
-			<FormInput
-				type="text"
-				value={username}
-				onChange={(e) => setUsername(e.target.value)}
-				placeholder="Username"
-				disabled={isLoading}
-			/>
-			<FormInput
-				type="password"
-				value={password}
-				onChange={(e) => setPassword(e.target.value)}
-				placeholder="Password"
-				autoComplete="current-password"
-				disabled={isLoading}
-			/>
-		</div>
-	);
+  const bodyContent = (
+    <div className="flex flex-col gap-4">
+      <FormInput
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email"
+        disabled={isLoading}
+      />
+      <FormInput
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Name"
+        disabled={isLoading}
+      />
+      <FormInput
+        type="text"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Username"
+        disabled={isLoading}
+      />
+      <FormInput
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+        autoComplete="current-password"
+        disabled={isLoading}
+      />
+    </div>
+  );
 
-	const footerContent = (
-		<div className="text-neutral-400 text-center mt-4">
-			<p>
-				Already have an account
-				<span
-					onClick={onToggle}
-					className="
+  const footerContent = (
+    <div className="text-neutral-400 text-center mt-4">
+      <p>
+        Already have an account
+        <span
+          onClick={onToggle}
+          className="
         text-white
         cursor-pointer
         hover:underline ml-2
         "
-				>
-					Sign in
-				</span>
-			</p>
-		</div>
-	);
-	return (
-		<Modal
-			disabled={isLoading}
-			isOpen={registerModal.isOpen}
-			title="Create an account"
-			actionLabel="Register"
-			onClose={registerModal.onClose}
-			onSubmit={onSubmit}
-			body={bodyContent}
-			footer={footerContent}
-		/>
-	);
+        >
+          Sign in
+        </span>
+      </p>
+    </div>
+  );
+  return (
+    <Modal
+      disabled={isLoading}
+      isOpen={registerModal.isOpen}
+      title="Create an account"
+      actionLabel="Register"
+      onClose={registerModal.onClose}
+      onSubmit={onSubmit}
+      body={bodyContent}
+      footer={footerContent}
+    />
+  );
 };

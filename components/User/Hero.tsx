@@ -19,7 +19,7 @@ export const UserHero: React.FC<UserHeroProps> = ({
         />
       )}
       <div className="absolute -bottom-16 left-4">
-        <Avatar isLarge hasBorder />
+        <Avatar isLarge hasBorder profileImage={fetchedUser?.profileImage} />
       </div>
     </div>
   );

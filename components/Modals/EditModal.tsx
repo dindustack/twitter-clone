@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { useIndividualUser } from "@/hooks/useIndividualUser";
 import useEditModal from "@/hooks/useEditModal";
+import { ImageUpload } from "../ImageUpload";
 
 export const EditModal = () => {
   const { data: currentUser } = useCurrentUser();
@@ -37,7 +38,7 @@ export const EditModal = () => {
     try {
       setIsLoading(true);
 
-      await axios.post("/api/edit", {
+      await axios.patch("/api/edit", {
         bio,
         coverImage,
         profileImage,
@@ -65,6 +66,19 @@ export const EditModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
+      <ImageUpload
+        value={profileImage}
+        disabled={isLoading}
+        onChange={(image) => setProfileImage(image)}
+        label="Upload Profile Image"
+      />
+
+      <ImageUpload
+        value={coverImage}
+        disabled={isLoading}
+        onChange={(image) => setCoverImage(image)}
+        label="Upload Cover Image"
+      />
       <FormInput
         type="text"
         value={name}
