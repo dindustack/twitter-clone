@@ -1,3 +1,5 @@
+"use client";
+
 export const SkeletonItem = () => {
   return (
     <div className="animate-pulse">

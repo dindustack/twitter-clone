@@ -3,14 +3,14 @@
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useCallback, useState } from "react";
+import { BsTwitter } from "react-icons/bs";
+import Image from "next/image";
 
 import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { usePosts } from "@/hooks/usePosts";
 import { useSession } from "@/hooks/useSession";
-import Image from "next/image";
-import { BsTwitter } from "react-icons/bs";
 import { Button } from "./Button";
 import { Avatar } from "./Avatar";
 import { usePost } from "@/hooks/usePost";

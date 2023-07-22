@@ -5,11 +5,13 @@ import { UserBio } from "@/components/User/Bio";
 import { UserHero } from "@/components/User/Hero";
 import { useIndividualUser } from "@/hooks/useIndividualUser";
 import { SkeletonProfile } from "../../profile-loading";
-import { PostFeed } from "@/components/PostFeed";
+import { PostFeed } from "@/components/Post/Feed";
 
 export default function UserView({ params }: { params: { userId: string } }) {
   const userId = params.userId;
   const { data: fetchedUser, isLoading } = useIndividualUser(userId);
+
+  console.log(userId);
 
   if (isLoading || !fetchedUser) {
     return <SkeletonProfile />;

@@ -39,10 +39,7 @@ export async function POST(req: Request, res: Response) {
   } catch (error) {
     if (error instanceof Error) {
       return new NextResponse(
-        JSON.stringify({
-          status: "error",
-          message: error.message,
-        }),
+        JSON.stringify({ status: "fail", message: error.message }),
         { status: 400 }
       );
     }

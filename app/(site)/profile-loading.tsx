@@ -1,3 +1,5 @@
+"use client";
+
 export const SkeletonProfile = () => {
   return (
     <div className="animate-pulse">

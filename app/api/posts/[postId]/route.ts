@@ -37,10 +37,7 @@ export async function GET(
   } catch (error: any) {
     if (error instanceof Error) {
       return new NextResponse(
-        JSON.stringify({
-          status: "fail",
-          message: error.message,
-        }),
+        JSON.stringify({ status: "fail", message: error.message }),
         { status: 401 }
       );
     }
