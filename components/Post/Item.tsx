@@ -1,11 +1,12 @@
 "use client";
 
+import { formatDistanceToNowStrict } from "date-fns";
+import { AiOutlineHeart, AiFillHeart, AiOutlineMessage } from "react-icons/ai";
+import { useCallback, useMemo } from "react";
+import { useRouter } from "next/navigation";
+
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useLoginModal from "@/hooks/useLoginModal";
-import { formatDistanceToNowStrict } from "date-fns";
-import { useRouter } from "next/navigation";
-import { useCallback, useMemo } from "react";
-import { AiOutlineHeart, AiFillHeart, AiOutlineMessage } from "react-icons/ai";
 import useLike from "@/hooks/useLike";
 import { Avatar } from "../Avatar";
 
@@ -19,6 +20,7 @@ export const PostItem: React.FC<PostItemProps> = ({ userId, data }) => {
   const loginModal = useLoginModal();
 
   const { data: currentUser } = useCurrentUser();
+  console.log("currentUser", currentUser);
   const { hasLiked, toggleLike } = useLike({ postId: data.id, userId });
 
   const goToUser = useCallback(

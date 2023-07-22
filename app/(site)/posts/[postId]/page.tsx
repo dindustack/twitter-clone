@@ -9,7 +9,7 @@ import { SkeletonItem } from "../../tweet-loading";
 export default function PostView({ params }: { params: { postId: string } }) {
   const postId = params.postId;
 
-  const { data: fetchedPost, isLoading } = usePost(postId);
+  const { data: fetchedPost, isLoading } = usePost(postId as string);
 
   if (isLoading || !fetchedPost) {
     return <SkeletonItem />;
@@ -19,7 +19,11 @@ export default function PostView({ params }: { params: { postId: string } }) {
     <>
       <Header label="Tweet" showBackArrow />
       <PostItem data={fetchedPost} />
-      <Form postId={postId} isComment placeholder="Tweet your reply" />
+      <Form
+        postId={postId as string}
+        isComment
+        placeholder="Tweet your reply"
+      />
       {/* <CommentFeed comments={fetchedPost?.comments} /> */}
     </>
   );

@@ -6,23 +6,34 @@ export async function GET(
   req: Request,
   { params }: { params: { userId: string } }
 ) {
-  const userId = params.userId;
-
   try {
-    const posts = await prisma.post.findMany({
+    const userId = params.userId;
+    if (!userId || typeof userId !== "string") {
+      return new NextResponse(
+        JSON.stringify({ status: "fail", message: "Invalid ID" }),
+        { status: 400 }
+      );
+    }
+
+    const notifications = await prisma.notification.findMany({
       where: {
         userId,
-      },
-      include: {
-        user: true,
-        comments: true,
       },
       orderBy: {
         createdAt: "desc",
       },
     });
 
-    return NextResponse.json(posts);
+    await prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        hasNotification: false,
+      },
+    });
+
+    return NextResponse.json(notifications);
   } catch (error) {
     if (error instanceof Error) {
       return new NextResponse(
