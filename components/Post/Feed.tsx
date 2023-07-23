@@ -11,18 +11,15 @@ interface PostFeedProps {
 
 export const PostFeed: React.FC<PostFeedProps> = ({ userId }) => {
   const { data: posts = [], isLoading } = usePosts(userId);
-  console.log(posts);
-  // const numbers = [1, 2, 3, 4, 5];
+  const numbers = [1, 2, 3, 4, 5];
 
-  // console.log("userId", userId);
+  if (!posts && userId !== undefined && isLoading) {
+    const skeletonItems = numbers.map((_n, index) => (
+      <SkeletonItem key={index} />
+    ));
 
-  // if (!posts && userId !== undefined && isLoading) {
-  //   const skeletonItems = numbers.map((_n, index) => (
-  //     <SkeletonItem key={index} />
-  //   ));
-
-  //   return skeletonItems;
-  // }
+    return skeletonItems;
+  }
 
   return (
     <Suspense fallback={<SkeletonItem />}>

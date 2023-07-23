@@ -2,12 +2,18 @@
 
 import { useUsers } from "@/hooks/useUsers";
 import { Avatar } from "./Avatar";
+import { useSession } from "next-auth/react";
 
 export const FollowBar = () => {
+  const { data: currentUser } = useSession();
   const { data: users = [] } = useUsers();
 
   if (users.length === 0) {
     return null;
+  }
+
+  if (!currentUser) {
+    return;
   }
 
   return (
