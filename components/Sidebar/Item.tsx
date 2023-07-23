@@ -5,39 +5,43 @@ import useCurrentUser from "@/hooks/useCurrentUser";
 import useLoginModal from "@/hooks/useLoginModal";
 
 interface SidebarItemProps {
-	auth?: boolean;
-	label: string;
-	href?: string;
-	icon: IconType;
-	onClick?: () => void;
+  auth?: boolean;
+  label: string;
+  href?: string;
+  icon: IconType;
+  onClick?: () => void;
 }
 
 export const SidebarItem: React.FC<SidebarItemProps> = ({
-	auth,
-	label,
-	href,
-	icon: Icon,
-	onClick,
+  auth,
+  label,
+  href,
+  icon: Icon,
+  onClick,
 }) => {
-	const { data: currentUser } = useCurrentUser();
-	const loginModal = useLoginModal();
-	const router = useRouter();
-	const handleClick = useCallback(() => {
-		if (onClick) {
-			return onClick();
-		}
+  const { data: currentUser } = useCurrentUser();
+  const loginModal = useLoginModal();
+  const router = useRouter();
+  const handleClick = useCallback(() => {
+    if (onClick) {
+      return onClick();
+    }
 
-		if (auth && !currentUser) {
-			loginModal.onOpen();
-		} else if (href) {
-			router.push(href);
-		}
-	}, [auth, currentUser, href, loginModal, router, onClick]);
+    if (auth && !currentUser) {
+      loginModal.onOpen();
+    } else if (href) {
+      router.push(href);
+    }
+  }, [auth, currentUser, href, loginModal, router, onClick]);
 
-	return (
-		<div onClick={handleClick} className="flex flex-row items-center">
-			<div
-				className="
+  return (
+    <div
+      onClick={handleClick}
+      className="flex flex-row items-center"
+      data-testid="sidebar-item-auth"
+    >
+      <div
+        className="
       relative
       rounded-full
       h-14
@@ -51,11 +55,11 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
       cursor-pointer
       lg:hidden
       "
-			>
-				<Icon size={28} color="white" />
-			</div>
-			<div
-				className="
+      >
+        <Icon size={28} color="white" />
+      </div>
+      <div
+        className="
       relative
       hidden
       lg:flex
@@ -67,10 +71,10 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
       hover:bg-opacity-10
       cursor-pointer
       "
-			>
-				<Icon size={28} color="white" />
-				<p className="hidden lg:block text-white text-xl">{label}</p>
-			</div>
-		</div>
-	);
+      >
+        <Icon size={28} color="white" />
+        <p className="hidden lg:block text-white text-xl">{label}</p>
+      </div>
+    </div>
+  );
 };

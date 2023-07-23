@@ -34,6 +34,7 @@ export const LoginModal = () => {
       });
 
       loginModal.onClose();
+      toast.success("Success logging in");
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
@@ -47,12 +48,14 @@ export const LoginModal = () => {
         <FormInput
           type="email"
           value={email}
+          data-testid="email"
           placeholder="Email"
           disabled={isLoading}
           onChange={(e) => setEmail(e.target.value)}
         />
         <FormInput
           type="password"
+          data-testid="password"
           value={password}
           placeholder="Password"
           disabled={isLoading}
@@ -78,7 +81,7 @@ export const LoginModal = () => {
   );
   return (
     <Modal
-      disabled={isLoading}
+      disabled={isLoading || !email || !password}
       isOpen={loginModal.isOpen}
       title="Login"
       actionLabel={isLoading ? "Submitting" : "Sign in"}
