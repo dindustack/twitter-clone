@@ -1,29 +1,30 @@
 interface FormInputProps {
-	autoComplete?: string;
-	disabled?: boolean;
-	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-	placeholder: string;
-	type: string;
-	value: string;
+  autoComplete?: string;
+  disabled?: boolean;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder: string;
+  type: string;
+  value: string;
 }
 
 export const FormInput: React.FC<FormInputProps> = ({
-	autoComplete,
-	disabled,
-	onChange,
-	placeholder,
-	type,
-	value,
+  autoComplete,
+  disabled,
+  onChange,
+  placeholder,
+  type,
+  value,
 }) => {
-	return (
-		<input
-			disabled={disabled}
-			onChange={onChange}
-			autoComplete={autoComplete}
-			value={value}
-			placeholder={placeholder}
-			type={type}
-			className="
+  return (
+    <input
+      data-testid="form-input"
+      disabled={disabled}
+      onChange={onChange}
+      autoComplete={autoComplete}
+      value={value}
+      placeholder={placeholder}
+      type={type}
+      className="
       w-full
       p-4
       text-lg
@@ -40,6 +41,6 @@ export const FormInput: React.FC<FormInputProps> = ({
       disabled:opacity-70
       disabled:cursor-not-allowed
       "
-		/>
-	);
+    />
+  );
 };
