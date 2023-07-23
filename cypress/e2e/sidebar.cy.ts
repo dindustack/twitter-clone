@@ -21,5 +21,9 @@ describe("Sidebar", () => {
     cy.contains("Login").should("be.visible");
   });
 
+  /**
+   * !Add click test for Tweet button
+   */
+
   // You can add more tests for other Sidebar functionality as needed
 });
