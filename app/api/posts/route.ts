@@ -3,7 +3,7 @@ export const revalidate = 5;
 
 import { NextResponse } from "next/server";
 
-import prisma from "@/libs/prismadb";
+import { prisma } from "@/libs/prismadb";
 
 export async function GET(req: Request, res: Response) {
   try {

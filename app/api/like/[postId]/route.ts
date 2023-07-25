@@ -1,7 +1,7 @@
 import { authOptions } from "@/libs/auth";
 import { getServerSession } from "next-auth";
 
-import prisma from "@/libs/prismadb";
+import { prisma } from "@/libs/prismadb";
 import { NextResponse } from "next/server";
 
 export async function POST(
